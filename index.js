@@ -35,7 +35,9 @@ function getAgent(url) {
 }
 
 function setupZeitFetch(fetch) {
-	return function zeitFetch(url, opts = {}) {
+	return function zeitFetch(url, providedOpts = {}) {
+		const opts = Object.assign({}, providedOpts);
+
 		if (!opts.agent) {
 			// Add default `agent` if none was provided
 			opts.agent = getAgent(url);

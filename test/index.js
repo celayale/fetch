@@ -56,3 +56,9 @@ exports.supportsBufferRequestBody = async () => {
 	server.close();
 	assert.deepEqual(body, {body: 'foo'});
 };
+
+exports.keepsOriginalOptsUnchanged = async () => {
+	const opts = {redirect: 'foo'};
+	await fetch('http://zeit.co', opts);
+	assert.equal(opts.redirect, 'foo');
+};
